@@ -25,7 +25,6 @@ def ft_ancient_text(filename: str) -> None:
         print(f"File '{filename}' closed")
 
 
-
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print(f"Usage: {sys.argv[0]} <file>")
