@@ -2,31 +2,29 @@ import sys
 import typing
 
 
-def ft_ancient_text(filename: str) -> None:
-    print("=== Cyber Archives Recovery ===")
-    print(f"Accessing file '{filename}'")
+def ft_ancient_text(user_input: list[str]) -> None:
+    file: typing.IO[str] | None = None
 
-    try:
-        file: typing.IO[str] = open(filename, "r")  # r is default for open()
-    except OSError as e:  # catches both FileNotFound- and Permissionerror
-        print(f"Error opening file '{filename}': {e}")
+    if len(user_input) != 2:
+        print(f"Usage: {user_input[0]} <file>")
         return
 
+    print("=== Cyber Archives Recovery ===")
+    print(f"Accessing file '{user_input[1]}'")
+
     try:
-        content: str = file.read()
-        print("---")
-        print()
-        print(content)
-    except OSError as e:
-        print(f"Error reading file '{filename}': {e}")
-    finally:
-        file.close()
+        file = open(user_input[1], "r")
+        print("---\n")
+        print(f"{file.read()}")
         print("\n---")
-        print(f"File '{filename}' closed")
+    except OSError as e:
+        print(f"Error opening file '{user_input[1]}': {e}")
+        return
+    finally:
+        if file is not None:
+            file.close()
+            print(f"File '{user_input[0]}' closed")
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} <file>")
-    else:
-        ft_ancient_text(sys.argv[1])
+    ft_ancient_text(sys.argv)
