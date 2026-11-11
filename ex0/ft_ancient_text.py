@@ -23,7 +23,7 @@ def ft_ancient_text(user_input: list[str]) -> None:
     finally:
         if file is not None:
             file.close()
-            print(f"File '{user_input[0]}' closed")
+            print(f"File '{user_input[1]}' closed")
 
 
 if __name__ == "__main__":

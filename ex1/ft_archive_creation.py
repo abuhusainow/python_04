@@ -24,7 +24,7 @@ def ft_ancient_text(user_input: list[str]) -> None:
     finally:
         if file is not None:
             file.close()
-            print(f"File '{user_input[0]}' closed")
+            print(f"File '{user_input[1]}' closed")
 
     new_content: str = transform(content)
 
@@ -50,9 +50,18 @@ def transform(content: str) -> str:
 
 def save_content(filename: str, content: str) -> None:
     print(f"Saving data to '{filename}'")
-    new_file = open(filename, "w")
-    new_file.write(content)
-    print(f"Data saved in file '{filename}'")
+
+    new_file: typing.IO[str] | None = None
+
+    try:
+        new_file = open(filename, "w")
+        new_file.write(content)
+        print(f"Data saved in file '{filename}'")
+    except OSError as e:
+        print(f"Error saving to {filename}: {e}")
+    finally:
+        if new_file is not None:
+            new_file.close()
 
 
 if __name__ == "__main__":
