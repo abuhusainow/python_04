@@ -19,7 +19,10 @@ def ft_ancient_text(user_input: list[str]) -> None:
         print(f"{content}")
         print("\n---")
     except OSError as e:
-        print(f"[STDERR] Error opening file '{user_input[1]}': {e}", file=sys.stderr)
+        print(
+            "[STDERR] Error opening file",
+            f"'{user_input[1]}': {e}", file=sys.stderr
+        )
         return
     finally:
         if file is not None:
